@@ -2451,7 +2451,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setScheduleButton.addEventListener("click", () => {
         const selectedTime = scheduleTimeInput.value;
-        selectedTime = convertTo12HourFormat(selectedTime);
+        
         const selectedDevice = deviceSelection.value;
         const repeatType = repeatOption.value;
         let repeatDetails = "";
