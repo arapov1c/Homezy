@@ -1516,7 +1516,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (isPopupOpen) return; // Ako je popup već otvoren, ne radimo ništa
 
             selectedItem = e.target;
+
             timer = setTimeout(() => {
+                if (selectedItem.classList.contains("add")) {
+                    console.log("Cannot delete the '+' button.");
+                    return;
+                }
+
                 isPopupOpen = true; // Obeležavamo da je popup otvoren
                 document.getElementById("delete-popup").style.display = "flex";
             }, longPressTime);
@@ -1541,7 +1547,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Brisanje elementa
     document.getElementById("delete").addEventListener("click", () => {
         console.log("Deleting:", selectedItem);
+
         if (selectedItem) {
+            // Spriječi brisanje "+" dugmeta
+            if (selectedItem.classList.contains("add")) {
+                console.log("Cannot delete the '+' button.");
+                return;
+            }
+
             selectedItem.remove();
             selectedItem = null; // Resetuj selektovani element
         }
@@ -1558,6 +1571,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("delete-popup").style.display = "none";
         isPopupOpen = false;
     }
+
 
     // Klik na OK u popupu
     closePopupButton.addEventListener("click", () => {
