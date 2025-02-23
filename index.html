@@ -1,16 +1,1419 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homezy App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  Hello world
-  <script src="script.js"></script>
+
+    <!-- Home Page -->
+    <div id="homepage" class="page active">
+        <div class="phone-frame">
+            <div class="content">
+                <div class="logo-container">
+                    <img src="kucica.png" alt="Homezy Logo" class="logo">
+                </div>
+                <h1 class="app-name">Homezy</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginpage" class="page hidden">
+        <div class="phone-frame">
+            <div class="content">
+                <img src="kucica.png" alt="Homezy Logo" class="logo-small">
+                <h1 class="app-name">Homezy</h1>
+                <div class="form-container">
+                    <div class="tabs">
+                        <button class="tab active">Log in</button>
+                        <button class="tab">Sign up</button>
+                    </div>
+                    <div class="form">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Username">
+                        <label for="password">Password</label>
+                        <div class="input-container">
+                            <input type="password" id="password" placeholder="Password">
+                            <span class="toggle-password" data-target="password">👁️</span>
+                        </div>
+                        <button class="btn">Log in</button>
+                    </div>
+                </div>
+            </div>
+            <div id="popup-login" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SignUp Page -->
+    <div id="signuppage" class="page hidden">
+        <div class="phone-frame">
+            <div class="content">
+                <img src="kucica.png" alt="Homezy Logo" class="logo-small">
+                <h1 class="app-name">Homezy</h1>
+                <div class="form-container">
+                    <div class="tabs">
+                        <button class="tab">Log in</button>
+                        <button class="tab active">Sign up</button>
+                    </div>
+                    <div class="form">
+                        <label for="username2">Username</label>
+                        <input type="text" id="username2" placeholder="Username">
+                        <label for="password3">Password</label>
+                        <div class="input-container">
+                            <input type="password" id="password3" placeholder="Password">
+                            <span class="toggle-password" data-target="password3">👁️</span>
+                        </div>
+                        <label for="password2">Repeat Password</label>
+                        <div class="input-container">
+                            <input type="password" id="password2" placeholder="Repeat Password">
+                            <span class="toggle-password" data-target="password2">👁️</span>
+                        </div>
+                        <button class="btn">Sign Up</button>
+                    </div>
+                </div>
+                <div id="popup-signup" class="popup">
+                    <div class="popup-content">
+                        <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                        <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1 id="welcome-message">Welcome, User</h1>
+
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="content">
+                <div class="temperature-info">
+                    <span class = "icon info"> </span>
+                    <div><span class="icon snowflake"></span> Outside temperature is -2°</div>
+                    <div><span class="icon thermometer"></span> Average house temperature: 15°</div>
+                    <div>The coldest room is Bathroom: 10°</div>
+                    <div>The hottest room is Living room: 17°</div>
+                </div>
+
+                <button class="video-button">Video surveillance</button>
+
+                <div class="grid">
+                    <div class="grid-item">Living room</div>
+                    <div class="grid-item">Kitchen</div>
+                    <div class="grid-item">Bedroom</div>
+                    <div class="grid-item">Bathroom</div>
+                    <div class="grid-item add">+</div>
+                </div>
+                
+                <button id="smart-scheduler-button" class="video-button">Smart Scheduler</button>
+               
+                <div class="bottom-icons">
+                    <img src="info-green-outline.png" alt="Alert Icon" class="alert-icon">
+                </div>
+                <div class="bottom-icon-dial">
+                    <span class="icon dial" id="dial-button"></span>
+                </div>
+                <!-- Popup prozor unutar phone-frame -->
+                <div class="delete-popup" id="delete-popup">
+                    <div class="delete-popup-content">
+                        <p>Želite li obrisati ovaj element?</p>
+                        <button class="btn-yes" id="delete">Da</button>
+                        <button class="btn-no" id="cancel">Ne</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Smart Scheduler Page -->
+    <div id="smartschedulerpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Smart Scheduler</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <h2>Schedule All Devices</h2>
+                <label for="device-selection">Select Device:</label>
+                <select id="device-selection">
+                    <option value="Air Conditioner - Kitchen">Air Conditioner - Kitchen</option>
+                    <option value="Air Conditioner - Living Room">Air Conditioner - Living Room</option>
+                    <option value="Boiler">Boiler</option>
+                    <option value="Cat Feeder">Cat Feeder</option>
+                </select>
+
+                <label for="schedule-time">Schedule Start Time:</label>
+                <input type="time" id="schedule-time">
+
+                <label for="repeat-option">Repeat:</label>
+                <select id="repeat-option">
+                    <option value="none">No Repeat</option>
+                    <option value="weekly">Every Week on Selected Day</option>
+                    <option value="monthly">Every Month on Selected Date</option>
+                </select>
+
+                <div id="weekly-options" class="hidden">
+                    <label for="day-of-week">Select Day:</label>
+                    <select id="day-of-week">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                </div>
+
+                <div id="monthly-options" class="hidden">
+                    <label for="day-of-month">Select Date:</label>
+                    <input type="number" id="day-of-month" min="1" max="31">
+                </div>
+
+                <button id="set-schedule" class="btn">Set Schedule</button>
+
+                <!-- Scheduled Devices List -->
+                <div id="scheduled-devices-container">
+                    <h3>Scheduled Devices</h3>
+                    <ul id="scheduled-devices-list"></ul>
+                </div>
+
+                <button class="back-button">← Back</button>
+            </main>
+            <div class="delete-popup" id="delete-popup">
+                <div class="delete-popup-content">
+                    <p>Želite li obrisati ovaj element?</p>
+                    <button class="btn-yes" id="delete">Da</button>
+                    <button class="btn-no" id="cancel">Ne</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kitchen Page -->
+
+    <div id="kitchenpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Kitchen</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <div class="info">
+                    <span class="icon info"></span>
+                     <span id="k-room-temp">Room temperature: 15°</span>
+                     <span id="k-lights-status">Lights are off.</span>
+                     <span id="k-b-status">AC is off.</span>
+                     <span id="k-fridge-temp">Fridge temperature: 4°</span>
+                     <span id="k-dish">Dishwasher status: off</span>
+
+                </div>
+                <button class="video-button">Video surveillance</button>
+                <div class="grid">
+                    <div class="grid-item">Air conditioner</div>
+                    <div class="grid-item">Lights</div>
+                    <div class="grid-item">Oven</div>
+                    <div class="grid-item">Fridge</div>
+                    <div class="grid-item">Dishwasher</div>
+                    <div class="grid-item add">+</div>
+                </div>
+                <button class="back-button">← Back</button>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- AC Kitchen Page -->
+
+    <div id="ACKpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Air Conditioner - Kitchen</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <div class="info">
+                    <span class="icon info"></span>
+                    <div><span class="icon snowflake"></span> Outside temperature is -2°</div>
+                    <div><span class="icon thermometer"></span>Room temperature: 15°</div>
+                </div>
+                <div class="form-container">
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status">AC is OFF</span>
+                    </div>
+
+
+                </div>
+                <div class="form-container">
+                    <div class="temp-control">
+                        <label for="wanted-temp">Wanted Temperature:</label>
+                        <input type="number" id="wanted-temp" min="-5" max="30" value="15" disabled>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <label for="ac-schedule-time">Schedule AC Start Time:</label>
+                    <input type="time" id="ac-schedule-time">
+                    <div class="button-container">
+                        <button id="set-ac-button">Set</button>
+                        <button id="reset-ac-button">Reset</button>
+                    </div>
+                    <p id="scheduled-ac-time-display">No schedule set.</p>
+                </div>
+                <button class="back-button">← Back</button>
+                <div id="popup-time-kitchen" class="popup">
+                    <div class="popup-content">
+                        <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                        <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <div id="LKpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Lights - Kitchen</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <div class="info">
+                    <span class="icon info"></span> Main and kitchen cabinet lights are available.
+                </div>
+
+                <div class="form-container">
+                    <!-- Glavno svetlo -->
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle-LK1">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status-LK1">Main light is OFF.</span>
+                    </div>
+                    <div class="light-intensity">
+                        <label for="light-intensity-LK1">Main Light Intensity:</label>
+                        <input type="range" id="light-intensity-LK1" min="0" max="100" value="50">
+                        <span id="light-value-LK1">50%</span>
+                    </div>
+
+                    <!-- Svjetlo kuhinjskog ormarića -->
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle-LK2">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status-LK2">Kitchen light is OFF.</span>
+                    </div>
+                    <div class="light-intensity">
+                        <label for="light-intensity-LK2">Kitchen Light Intensity:</label>
+                        <input type="range" id="light-intensity-LK2" min="0" max="100" value="50">
+                        <span id="light-value-LK2">50%</span>
+                    </div>
+                </div>
+
+                <button class="back-button">← Back</button>
+            </main>
+        </div>
+    </div>
+    <!-- Oven page -->
+
+    <div id="ovenpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Oven</h1>
+                <div class="icon profile"></div>
+            </header>
+            <main class="kitchen-content">
+                        
+                <div class="dial-container">
+                    <svg viewBox="0 0 200 200" class="dial-svg">
+                        <circle cx="100" cy="100" r="90" class="dial-background"></circle>
+                        <circle cx="100" cy="100" r="90" class="dial-progress" id="dial-progress"></circle>
+                        <text x="100" y="110" class="dial-text" id="oven-temp-display">0°</text>
+                    </svg>
+
+                    <div class="dial-knob" id="dial-knob"></div>
+                </div>
+                <div class="manual-temp-input">
+                    <label for="manual-temp">Set Temperature:</label>
+                    <input type="number" id="manual-temp" min="0" max="250" value="0">
+                </div>
+
+                <!-- Mode Selection Grid -->
+                <div class="mode-grid">
+                    <button class="mode-btn" id="both-heaters"><img src="oba grijaca.png" alt="Both Heaters"></button>
+                    <button class="mode-btn" id="bottom-heater"><img src="donji grijac.png" alt="Bottom Heater"></button>
+                    <button class="mode-btn" id="top-heater"><img src="grill.png" alt="Top Heater"></button>
+                    <button class="mode-btn" id="defrost"><img src="defrost.png" alt="Defrost"></button>
+                    <button class="mode-btn" id="fan"><img src="fan.png" alt="Light"></button>
+                    <button class="mode-btn" id="light"><img src="svjetlo.png" alt="Light"></button>
+                </div>
+
+                <button class="back-button">← Back</button>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Bathroom Page -->
+    <div id="bathroompage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Bathroom</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <div class="info">
+                    <span class="icon info"></span>
+                     <span id="b-room-temp">Room temperature: 15°</span>
+                     <span id="b-lights-status">Lights are off.</span>
+                     <span id="b-b-status">Boiler is off.</span>
+                     <span id="b-i-status">Ironing station is off.</span>
+                     <span id="b-w-status">Washing machine is off.</span>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">Washing machine</div>
+                    <div class="grid-item">Lights</div>
+                    <div class="grid-item">Dryer</div>
+                    <div class="grid-item">Ironing Station</div>
+                    <div class="grid-item">Boiler</div>
+                    <div class="grid-item add">+</div>
+                </div>
+                <button class="back-button">← Back</button>
+            </main>
+        </div>
+    </div>
+
+
+  <!-- lights bathroom-->
+    
+    <div id="LBpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Lights - Bathroom</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                
+
+                <div class="form-container">
+                    <!-- Glavno svetlo -->
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle-LB1">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status-LB1">Main light is OFF</span>
+                    </div>
+                    <div class="light-intensity">
+                        <label for="light-intensity-LB1">Main Light Intensity:</label>
+                        <input type="range" id="light-intensity-LB1" min="0" max="100" value="50">
+                        <span id="light-value-LB1">50%</span>
+                    </div>
+
+                    <!-- Svjetlo ormarića -->
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle-LB2">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status-LB2">MakeUp cabinet light is OFF</span>
+                    </div>
+                    <div class="light-intensity">
+                        <label for="light-intensity-LB2">Cabinet Light Intensity:</label>
+                        <input type="range" id="light-intensity-LB2" min="0" max="100" value="50">
+                        <span id="light-value-LB2">50%</span>
+                    </div>
+                </div>
+
+                <button class="back-button">← Back</button>
+            </main>
+        </div>
+    </div>
+
+    <!-- Video Surveillance page -->
+
+    <div id="vspage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Video Surveillance</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <img class="vs" src="vs.png" alt="VS Image">
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+        </div>
+    </div>
+
+    <!-- Video Surveillance page Kitchen -->
+
+    <div id="vskpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Video Surveillance - Kitchen</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <img class="vsk" src="kuhinja.png" alt="VSK Image">
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+        </div>
+    </div>
+
+    <!-- Video Surveillance page Living Room -->
+
+    <div id="vslrpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Video Surveillance - Living Room</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <img class="vslr" src="dnevni boravak.png" alt="VSLR Image">
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+        </div>
+    </div>
+
+
+    <div id="BBpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Boiler - Bathroom</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <div class="info">
+                    <span class="icon info"></span> Boiler type: BOSCH.
+                </div>
+
+                <div class="form-container">
+                    <!-- Boiler Switch -->
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle-BB1">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status-BB1">Boiler is OFF</span>
+                    </div>
+
+                    <!-- Temperature Slider -->
+                    <div class="light-intensity">
+                        <label for="boiler-intensity-BB1">Wanted water temperature:</label>
+                        <input type="range" id="boiler-intensity-BB1" min="10" max="60" value="20">
+                        <span id="boiler-value-BB1">20°C</span>
+                    </div>
+
+                    <!-- Schedule Boiler Activation -->
+                    <div class="schedule-boiler">
+                        <label for="boiler-schedule">Set activation time:</label>
+                        <input type="time" id="boiler-schedule">
+                        <div class="button-group">
+                            <button id="set-boiler-time">Set</button>
+                            <button id="reset-boiler-time" class="reset-btn">Reset</button>
+                        </div>
+                        <p id="scheduled-time-display">No schedule set</p>
+                    </div>
+
+                </div>
+
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+            <div id="popup-time-boiler" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+            <div id="popup-boiler" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile page -->
+
+    <div id="profilepage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Profile</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="profile-content">
+                <div class="profile-buttons">
+                    <button class="profile-btn" id="your-profile">Your Profile</button>
+                    <button class="profile-btn" id="manage-users">Manage Users</button>
+                    <button class="profile-btn logout-btn" id="log-out">Log Out</button>
+                </div>
+                <div class="kitchen-content">
+                    <button class="back-button">
+                        ← Back
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- Your profile page -->
+
+    <div id="yourprofilepage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Your Profile</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="profile-content">
+                <div class="profile-fields">
+                    <label for="username-field">User Name:</label>
+                    <input type="text" id="username-field" value="" disabled>
+
+                    <label for="password-field">Password:</label>
+                        <input type="password" id="password-field" value="" disabled>
+                        
+                    <div id="current-password-container" class="hidden">
+                        <label for="current-password">Enter Current Password:</label>
+                        <div class="input-container">
+                            <input type="password" id="current-password" value="" disabled>
+                            <span class="toggle-password" data-target="current-password">👁️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-buttons">
+                    <button class="profile-btn" id="edit-profile">Edit</button>
+                    <button class="profile-btn hidden" id="save-profile">Save</button>
+                    <button class="profile-btn hidden" id="cancel-profile">Cancel</button>
+                </div>
+
+                <div class="kitchen-content">
+                    <button class="back-button">
+                        ← Back
+                    </button>
+                </div>
+            </main>
+            <div id="popup-edit" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+            <div id="popup-save-profile" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="addroompage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Add new room</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="profile-content">
+                <div class="profile-fields">
+                    <label for="room-name">Room Name:</label>
+                    <input type="text" id="room-name" placeholder="Enter room name">
+
+
+                    <label>Select Devices:</label>
+                    <div class="add-room-grid">
+                        <div class="add-room-item" onclick="toggleSelection(this)">Fridge</div>
+                        <div class="add-room-item" onclick="toggleSelection(this)">Oven</div>
+                        <div class="add-room-item" onclick="toggleSelection(this)">Iron</div>
+                        <div class="add-room-item" onclick="toggleSelection(this)">AC</div>
+                        <div class="add-room-item" onclick="toggleSelection(this)">Dishwasher</div>
+                        <div class="add-room-item" onclick="toggleSelection(this)">Cat feeder</div>
+                        <div class="add-room-item" onclick="toggleSelection(this)">Dryer</div>
+                        <div class="add-room-item" onclick="toggleSelection(this)">Roomba</div>
+                    </div>
+                </div>
+
+                <div class="popup" id="room-added-popup">
+                    <div class="popup-content">
+                        <p id="popup-message"></p>
+                        <button id="close-popup">OK</button>
+                    </div>
+                </div>
+                <div id="popup-no-room-name" class="popup">
+                    <div class="popup-content">
+                        <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                        <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                    </div>
+                </div>
+
+                <div class="profile-buttons">
+                    <button class="profile-btn" id="add-room">Add</button>
+                    <button class="profile-btn hidden" id="save-profile">Save</button>
+                    <button class="profile-btn hidden" id="cancel-profile">Cancel</button>
+                </div>
+
+                <div class="kitchen-content">
+                    <button class="back-button">
+                        ← Back
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <div id="alertpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Current House Status</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="profile-content">
+                <div class="alert-container">
+                    <h2>Device Status</h2>
+                    <ul id="device-status">
+                        <li><strong>Air Conditioners:</strong> <span id="ac-status-alert">Loading...</span></li>
+                        <li><strong>Oven:</strong> <span id="oven-status-alert">Loading...</span></li>
+                        <li><strong>Boiler:</strong> <span id="boiler-status-alert">Loading...</span></li>
+                        <li><strong>Lights:</strong> <span id="lights-status-alert">Loading...</span></li>
+                    </ul>
+                </div>
+
+                <div class="kitchen-content">
+                    <button class="back-button">
+                        ← Back
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--fridge page -->
+
+    <div id="fridgepage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Fridge</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <div class="info">
+                    <span class="icon info"></span>
+                    <div><span class="icon thermometer"></span> Fridge temperature: <span id="fridge-temp">4</span>°C</div>
+        </div>
+
+                <!-- Temperature Control -->
+                <div class="form-container">
+                    <label for="fridge-temp-input">Set Temperature:</label>
+                    <input type="number" id="fridge-temp-input" min="1" max="10" value="4">
+                    <button id="set-fridge-temp">Set</button>
+                </div>
+
+                <!-- Shopping List -->
+                <div class="form-container">
+                    <h3>Shopping List</h3>
+                    <input type="text" id="shopping-item" placeholder="Enter item name">
+                    <button id="add-item">Add</button>
+
+                    <div class="shopping-list-container">
+                        <ul id="shopping-list-items"></ul>
+                    </div>
+                </div>
+                <button class="back-button">← Back</button>
+            </main>
+            <div id="popup-fridge" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Dishwasher Page -->
+    <div id="dishwasherpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Dishwasher</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="dishwasher-content">
+                <div class="dishwasher-status">
+                    <h2>Current Status</h2>
+                    <p><strong>Selected Program:</strong> <span id="selected-dishwasher-program">None</span></p>
+                    <p><strong>Status:</strong> <span id="dishwasher-running">OFF</span></p>
+                </div>
+
+                <div class="dishwasher-programs">
+                    <h2>Choose Program</h2>
+                    <div class="programs-container">
+                        <button class="dishwasher-program-btn" data-program="Prewash">
+                            <img src="prewash.png" alt="Prewash" class="small-image">
+                        </button>
+                        <button class="dishwasher-program-btn" data-program="Main Wash">
+                            <img src="mainwash.png" alt="Main Wash" class="small-image">
+                        </button>
+                        <button class="dishwasher-program-btn" data-program="Eco">
+                            <img src="eco.png" alt="Eco" class="small-image">
+                        </button>
+                        <button class="dishwasher-program-btn" data-program="Normally Soiled">
+                            <img src="normallysoiled.png" alt="Normally Soiled" class="small-image">
+                        </button>
+                        <button class="dishwasher-program-btn" data-program="Badly Soiled">
+                            <img src="badlysoiled.png" alt="Badly Soiled" class="small-image">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dishwasher-stages">
+                    <h2>Washing Stages</h2>
+                    <div class="stages-container">
+                        <div class="stage" id="washing-stage">
+                            <img src="pranje.png" alt="Washing" class="small-image">
+                        </div>
+                        <div class="stage" id="drying-stage">
+                            <img src="drying.png" alt="Drying" class="small-image">
+                        </div>
+                        <div class="stage" id="end-stage">
+                            <img src="kraj.png" alt="End" class="small-image">
+                        </div>
+                    </div>
+                </div>
+
+                <button id="start-dishwasher" class="start-dishwasher-btn">Start</button>
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+            <div id="popup-dishwasher" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Washing Machine Page -->
+    <div id="washingmachinepage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Washing Machine</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="washing-content">
+                <div class="washing-status">
+                    <h2>Current Status</h2>
+                    <p><strong>Selected Program:</strong> <span id="selected-wash-program">None</span></p>
+                    <p><strong>Temperature:</strong> <span id="washing-temp-display">40°C</span></p>
+                    <p><strong>Status:</strong> <span id="washing-running">OFF</span></p>
+                    <progress id="washing-progress" value="0" max="100"></progress>
+                </div>
+
+                <div class="wash-programs">
+                    <h2>Choose Program</h2>
+                    <button class="wash-program-btn" data-program="Cotton">Cotton</button>
+                    <button class="wash-program-btn" data-program="Synthetics">Synthetics</button>
+                    <button class="wash-program-btn" data-program="Delicates">Delicates</button>
+                    <button class="wash-program-btn" data-program="Quick Wash">Quick Wash</button>
+                    <button class="wash-program-btn" data-program="Eco">Eco</button>
+                </div>
+
+                <div class="temperature-control">
+                    <h2>Set Temperature</h2>
+                    <input type="range" id="washing-temp" min="30" max="90" value="40">
+                    <span id="washing-temp-value">40°C</span>
+                </div>
+
+                <button id="start-wash" class="start-wash-btn">Start</button>
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+            <div id="popup-washing" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+            <div id="popup-washing-2" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dryerpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Dryer</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="dryer-content">
+                <div class="dryer-status">
+                    <h2>Current Status</h2>
+                    <p><strong>Selected Program:</strong> <span id="selected-dryer-program">None</span></p>
+                    <p><strong>Temperature:</strong> <span id="dryer-temp-display">50°C</span></p>
+                    <p><strong>Status:</strong> <span id="dryer-running">OFF</span></p>
+                    <progress id="dryer-progress" value="0" max="100"></progress>
+
+                </div>
+
+                <div class="dryer-programs">
+                    <h2>Choose Program</h2>
+                    <button class="dryer-program-btn" data-program="Delicate Dry">Delicate Dry</button>
+                    <button class="dryer-program-btn" data-program="Normal Dry">Normal Dry</button>
+                    <button class="dryer-program-btn" data-program="Extra Dry">Extra Dry</button>
+                    <button class="dryer-program-btn" data-program="Quick Dry">Quick Dry</button>
+                    <button class="dryer-program-btn" data-program="Eco Mode">Eco Mode</button>
+                </div>
+
+                <div class="temperature-control">
+                    <h2>Set Temperature</h2>
+                    <input type="range" id="dryer-temp" min="30" max="80" value="50">
+                    <span id="dryer-temp-value">50°C</span>
+                </div>
+
+                <button id="start-dryer" class="start-dryer-btn">Start</button>
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+            <div id="popup-dryer" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+            <div id="popup-dryer-2" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="ironingstationpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Ironing Station</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="ironing-content">
+                <div class="ironing-status">
+                    <h2>Current Status</h2>
+                    <p><strong>Ironing Station:</strong> <span id="ironing-status">OFF</span></p>
+                </div>
+
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="ironing-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+        </div>
+    </div>
+
+     <!-- Living Room Page -->
+    <div id="livingroompage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Living Room</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <!-- Status klima uređaja -->
+                <div class="info">
+                    <span class="icon info"></span>
+                     <span id="lr-room-temp">Room temperature: 15°</span>
+                     <span id="lr-ac-status">Air conditioner is off.</span>
+                     <span id="lr-lights-status">Lights are on.</span>
+                </div>
+
+                <button class="video-button">Video surveillance</button>
+
+                <div class="grid">
+                    <div class="grid-item">Air conditioner</div>
+                    <div class="grid-item">Lights</div>
+                    <div class="grid-item">Cat feeder</div>
+                    <div class="grid-item add">+</div>
+                </div>
+
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+        </div>
+    </div>
+
+    <!-- AC Livin Room Page -->
+
+    <div id="ACLRpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Air Conditioner - Living Room</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <div class="info">
+                    <span class="icon snowflake"></span> Outside temperature is -2°
+                    <span class="icon thermometer"></span>
+                    <span>Room temperature: <span id="current-temp">15</span>°</span>
+                </div>
+                <div class="form-container">
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="aclr-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="aclr-status">AC is OFF</span>
+                    </div>
+
+
+                </div>
+                <div class="form-container">
+                    <div class="temp-control">
+                        <label for="wanted-temp-lr">Wanted Temperature:</label>
+                        <input type="number" id="wanted-temp-lr" min="5" max="30" value="15" disabled>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <label for="ac-schedule-time-aclr">Schedule AC Start Time:</label>
+                    <input type="time" id="ac-schedule-time-aclr">
+                    <div class="button-container">
+                        <button id="set-ac-button-aclr">Set</button>
+                        <button id="reset-ac-button-aclr">Reset</button>
+                    </div>
+                    <p id="scheduled-ac-time-display-aclr">No schedule set.</p>
+                </div>
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+            <div id="popup-time-living-room" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Lights Livin Room Page -->
+
+    <div id="LLRpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Lights - Living Room</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <div class="info">
+                    <span class="icon info"></span> Main and side lights are available.
+                </div>
+
+                <div class="form-container">
+                    <!-- Glavno svetlo -->
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle-LLR1">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status-LLR1">Main light is OFF</span>
+                    </div>
+                    <div class="light-intensity">
+                        <label for="light-intensity-LLR1">Main Light Intensity:</label>
+                        <input type="range" id="light-intensity-LLR1" min="0" max="100" value="50">
+                        <span id="light-value-LLR1">50%</span>
+                    </div>
+
+                    <!-- Svjetlo ormarića -->
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle-LLR2">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status-LLR2">Side light is OFF</span>
+                    </div>
+                    <div class="light-intensity">
+                        <label for="light-intensity-LLR2">Cabinet Light Intensity:</label>
+                        <input type="range" id="light-intensity-LLR2" min="0" max="100" value="50">
+                        <span id="light-value-LLR2">50%</span>
+                    </div>
+                </div>
+
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+        </div>
+    </div>
+
+    <!-- Cat Feeder Page -->
+
+    <div id="catfeederpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Cat feeder</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <img id="cat-image" src="cat.png" alt="Cat waiting for food">
+
+                <div class="info">
+                    <span>Schedule activation for Cat feeder:</span>
+                </div>
+                <div class="form-container">
+                    <label for="ac-schedule-time-cf">Schedule Feeding Time:</label>
+                    <input type="time" id="ac-schedule-time-cf">
+                    <div class="button-container">
+                        <button id="set-ac-button-cf">Set</button>
+                        <button id="reset-ac-button-cf">Reset</button>
+                    </div>
+                    <p id="scheduled-ac-time-display-cf">No schedule set.</p>
+                </div>
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+            <div id="popup-time-cat-feeder" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bedroom Page -->
+    <div id="bedroompage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Bedroom</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <!-- Status klima uređaja -->
+                
+                <div class="info">
+                    <span class="icon info"></span>
+                     <span id="br-room-temp">Room temperature: 15°</span>
+                     <span id="br-ac-status">Air conditioner is off.</span>
+                     <span id="br-lights-status">Lights are on.</span>
+                </div>
+                <button class="video-button">Video surveillance</button>
+            
+                <div class="grid">
+                    <div class="grid-item">Lights</div>
+                    <div class="grid-item">Roomba</div>
+                    <div class="grid-item">Smart Curtains</div>
+                    <div class="grid-item add">+</div>
+                </div>
+
+                <button class="back-button">← Back</button>
+            </main>
+        </div>
+    </div>
+
+    <!-- AC Bedroom Page -->
+    <div id="ACBRpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Air Conditioner - Bedroom</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="bedroom-content">
+                <div class="info">
+                    <span class="icon snowflake"></span> Outside temperature is -2°
+                    <span class="icon thermometer"></span>
+                    <span>Room temperature: <span id="current-temp-br">15</span>°</span>
+                </div>
+                <div class="form-container">
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="acbr-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="acbr-status">AC is OFF</span>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="temp-control">
+                        <label for="wanted-temp-br">Wanted Temperature:</label>
+                        <input type="number" id="wanted-temp-br" min="5" max="30" value="15" disabled>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <label for="ac-schedule-time-acbr">Schedule AC Start Time:</label>
+                    <input type="time" id="ac-schedule-time-acbr">
+                    <div class="button-container">
+                        <button id="set-ac-button-acbr">Set</button>
+                        <button id="reset-ac-button-acbr">Reset</button>
+                    </div>
+                    <p id="scheduled-ac-time-display-acbr">No schedule set.</p>
+                </div>
+                <button class="back-button">← Back</button>
+            </main>
+        </div>
+    </div>
+    <!-- Lights Bedroom Page -->
+    <div id="LBRpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Lights - Bedroom</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+                <div class="info">
+                    <span class="icon info"></span> Main and bedside lights are available.
+                </div>
+
+                <div class="form-container">
+                    <!-- Glavno svetlo -->
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle-LBR1">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status-LBR1">Main light is OFF</span>
+                    </div>
+                    <div class="light-intensity">
+                        <label for="light-intensity-LBR1">Main Light Intensity:</label>
+                        <input type="range" id="light-intensity-LBR1" min="0" max="100" value="50">
+                        <span id="light-value-LBR1">50%</span>
+                    </div>
+
+                    <!-- Noćno svetlo -->
+                    <div class="ac-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="ac-toggle-LBR2">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="ac-status-LBR2">Bedside light is OFF</span>
+                    </div>
+                    <div class="light-intensity">
+                        <label for="light-intensity-LBR2">Bedside Light Intensity:</label>
+                        <input type="range" id="light-intensity-LBR2" min="0" max="100" value="50">
+                        <span id="light-value-LBR2">50%</span>
+                    </div>
+                </div>
+
+                <button class="back-button">← Back</button>
+            </main>
+        </div>
+    </div>
+
+    <!-- Lights Bedroom Page -->
+    <div id="RoombaPage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Roomba - Bedroom</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="kitchen-content">
+               
+
+                <div class="info">
+                    <span>Schedule activation for Roomba:</span>
+                </div>
+                <div class="form-container">
+                    <label for="ac-schedule-time-r">Schedule vacuuming time:</label>
+                    <input type="time" id="ac-schedule-time-r">
+                    <div class="button-container">
+                        <button id="set-ac-button-r">Set</button>
+                        <button id="reset-ac-button-r">Reset</button>
+                    </div>
+                    <p id="scheduled-ac-time-display-r">No schedule set.</p>
+                </div>
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+            <div id="popup-time-r" class="popup">
+                <div class="popup-content">
+                    <p class="popup-message"></p>  <!-- Ovaj element mora postojati -->
+                    <button class="popup-close">OK</button>  <!-- I ovaj takođe -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Dial Page -->
+    <!-- Dial Page -->
+    <div id="dialpage" class="page hidden">
+        <div class="phone-frame">
+            <header class="header">
+                <div class="icon home"></div>
+                <h1>Emergency & Banking</h1>
+                <div class="icon profile"></div>
+            </header>
+
+            <main class="dial-content">
+                <h2>Quick Emergency Calls</h2>
+                <div class="form-container">
+                <div class="emergency-buttons">
+                    <button class="emergency-btn" id="call-police">🚔 Police</button>
+                    <button class="emergency-btn" id="call-ambulance">🚑 Ambulance</button>
+                    <button class="emergency-btn" id="call-fire">🔥 Fire Brigade</button>
+                    <button class="emergency-btn" id="call-contact">📞 Emergency Contact</button>
+                </div>
+                </div>
+                <h2>Banking</h2>
+               
+                <button id="bank-button" class="bank-btn">
+                    <img src="bank.png" alt="Banking" class="bank-icon"> Open Bank App
+                </button>
+                <button class="back-button">
+                    ← Back
+                </button>
+            </main>
+            <div id="popup-police" class="popup-overlay">
+                <div class="popup-box">
+                    <p class="popup-message"></p>
+                    <button class="popup-yes">Yes</button>
+                    <button class="popup-no">No</button>
+                </div>
+            </div>
+            <div id="popup-amb" class="popup-overlay">
+                <div class="popup-box">
+                    <p class="popup-message"></p>
+                    <button class="popup-yes">Yes</button>
+                    <button class="popup-no">No</button>
+                </div>
+            </div>
+            <div id="popup-fire" class="popup-overlay">
+                <div class="popup-box">
+                    <p class="popup-message"></p>
+                    <button class="popup-yes">Yes</button>
+                    <button class="popup-no">No</button>
+                </div>
+            </div>
+            <div id="popup-bank" class="popup-overlay">
+                <div class="popup-box">
+                    <p class="popup-message"></p>
+                    <button class="popup-yes">Yes</button>
+                    <button class="popup-no">No</button>
+                </div>
+            </div>
+            <div id="popup-call" class="popup-overlay">
+                <div class="popup-box">
+                    <p class="popup-message"></p>
+                    <button class="popup-yes">Yes</button>
+                    <button class="popup-no">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+    <script>
+        function toggleSelection(element) {
+            element.classList.toggle("selected");
+        }
+    </script>
+
 </body>
 
 </html>
